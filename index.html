@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Christian Rementizo</title>
+
+  <!-- WEBSITE ICON -->
+  <link rel="icon" type="image/png" href="loo.png">
+
+  <!-- GOOGLE FONT -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- FONT AWESOME -->
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <style>
+
+    :root{
+      --red:#e10600;
+      --dark:#111111;
+      --light:#ffffff;
+      --gray:#f4f4f4;
+    }
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Poppins', sans-serif;
+      scroll-behavior:smooth;
+    }
+
+    body{
+      background:var(--light);
+      color:var(--dark);
+      overflow-x:hidden;
+    }
+
+    img{
+      max-width:100%;
+      display:block;
+    }
+
+    /* HEADER */
+    header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:20px 70px;
+      position:fixed;
+      top:0;
+      width:100%;
+      background:white;
+      z-index:1000;
+      box-shadow:0 2px 15px rgba(0,0,0,0.08);
+    }
+
+    .logo{
+      font-size:30px;
+      font-weight:800;
+      color:var(--dark);
+      letter-spacing:1px;
+    }
+
+    .logo span{
+      color:var(--red);
+    }
+
+    nav{
+      display:flex;
+      align-items:center;
+      gap:25px;
+    }
+
+    nav a{
+      text-decoration:none;
+      color:var(--dark);
+      font-weight:500;
+      transition:0.3s;
+      position:relative;
+    }
+
+    nav a::after{
+      content:'';
+      position:absolute;
+      left:0;
+      bottom:-6px;
+      width:0;
+      height:2px;
+      background:var(--red);
+      transition:0.3s;
+    }
+
+    nav a:hover::after{
+      width:100%;
+    }
+
+    nav a:hover{
+      color:var(--red);
+    }
+
+    /* BUTTON */
+    .btn{
+      background:var(--red);
+      color:white;
+      padding:14px 28px;
+      border:none;
+      border-radius:50px;
+      font-size:15px;
+      font-weight:600;
+      cursor:pointer;
+      transition:0.3s ease;
+      text-decoration:none;
+      display:inline-block;
+      box-shadow:0 10px 20px rgba(225,6,0,0.2);
+    }
+
+    .btn:hover{
+      transform:translateY(-4px);
+      background:#c50000;
+    }
+
+    /* HERO */
+    .hero{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:140px 70px 80px;
+      background:
+      linear-gradient(
+      120deg,
+      #ffffff 50%,
+      #d90404 50%
+      );
+      gap:60px;
+    }
+
+    .hero-text{
+      max-width:600px;
+    }
+
+    .hero-text h4{
+      color:#666;
+      font-size:20px;
+      margin-bottom:12px;
+    }
+
+    .hero-text h1{
+      font-size:65px;
+      line-height:1.1;
+      margin-bottom:15px;
+      font-weight:800;
+    }
+
+    .hero-text h1 span{
+      color:var(--red);
+    }
+
+    .role{
+      font-size:20px;
+      color:#555;
+      margin-bottom:30px;
+      line-height:1.6;
+    }
+
+    .hero-buttons{
+      display:flex;
+      gap:15px;
+      flex-wrap:wrap;
+    }
+
+    .btn-outline{
+      background:transparent;
+      border:2px solid var(--red);
+      color:var(--red);
+      box-shadow:none;
+    }
+
+    .btn-outline:hover{
+      background:var(--red);
+      color:white;
+    }
+
+    .hero-img{
+      position:relative;
+    }
+
+    .hero-img img{
+      width:420px;
+      border-radius:30px;
+      box-shadow:0 20px 40px rgba(0,0,0,0.25);
+      border:6px solid white;
+    }
+
+    /* SECTION */
+    section{
+      padding:100px 8%;
+    }
+
+    .section-title{
+      font-size:42px;
+      margin-bottom:20px;
+      position:relative;
+      display:inline-block;
+      font-weight:700;
+    }
+
+    .section-title::after{
+      content:'';
+      width:60%;
+      height:4px;
+      background:var(--red);
+      position:absolute;
+      left:0;
+      bottom:-10px;
+      border-radius:10px;
+    }
+
+    /* ABOUT */
+    .about{
+      background:linear-gradient(135deg,#ff1a1a,#9d0000);
+      color:white;
+    }
+
+    .about-container{
+      max-width:1200px;
+      margin:auto;
+    }
+
+    .about .section-title{
+      color:white;
+    }
+
+    .about .section-title::after{
+      background:white;
+    }
+
+    .about-text{
+      font-size:17px;
+      line-height:1.9;
+      margin-bottom:20px;
+      max-width:900px;
+    }
+
+    .about-highlights{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:25px;
+      margin-top:40px;
+    }
+
+    .highlight-card{
+      background:rgba(255,255,255,0.12);
+      border:1px solid rgba(255,255,255,0.2);
+      padding:30px;
+      border-radius:22px;
+      transition:0.4s ease;
+      backdrop-filter:blur(10px);
+    }
+
+    .highlight-card:hover{
+      transform:translateY(-10px);
+      background:rgba(255,255,255,0.18);
+      box-shadow:0 10px 30px rgba(0,0,0,0.25);
+    }
+
+    .highlight-card h3{
+      margin-bottom:12px;
+      font-size:22px;
+    }
+
+    .social-links{
+      margin-top:40px;
+      display:flex;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    .social-btn{
+      text-decoration:none;
+      padding:14px 24px;
+      border-radius:50px;
+      background:white;
+      color:#d10000;
+      font-weight:600;
+      transition:0.3s ease;
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .social-btn:hover{
+      background:black;
+      color:white;
+      transform:translateY(-4px);
+    }
+
+    /* SKILLS */
+    .skills-section{
+      background:#f8f8f8;
+      text-align:center;
+    }
+
+    .skills-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+      gap:25px;
+      max-width:1200px;
+      margin:auto;
+      margin-top:50px;
+    }
+
+    .skill-card{
+      background:white;
+      padding:35px 25px;
+      border-radius:22px;
+      box-shadow:0 10px 25px rgba(0,0,0,0.06);
+      border-top:5px solid var(--red);
+      transition:0.3s;
+      text-align:left;
+    }
+
+    .skill-card:hover{
+      transform:translateY(-10px);
+    }
+
+    .skill-card i{
+      font-size:40px;
+      color:var(--red);
+      margin-bottom:15px;
+    }
+
+    .skill-card h3{
+      margin-bottom:10px;
+    }
+
+    .skill-card p{
+      color:#666;
+      line-height:1.7;
+    }
+
+    /* PORTFOLIO */
+    .portfolio-section{
+      background:white;
+      text-align:center;
+    }
+
+    .portfolio-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:30px;
+      margin-top:50px;
+    }
+
+    .portfolio-card{
+      background:white;
+      border-radius:22px;
+      overflow:hidden;
+      box-shadow:0 10px 25px rgba(0,0,0,0.08);
+      transition:0.3s;
+    }
+
+    .portfolio-card:hover{
+      transform:translateY(-10px);
+    }
+
+    .portfolio-card img{
+      width:100%;
+      height:220px;
+      object-fit:cover;
+    }
+
+    .portfolio-content{
+      padding:25px;
+      text-align:left;
+    }
+
+    .portfolio-content h3{
+      margin-bottom:12px;
+    }
+
+    .portfolio-content p{
+      color:#666;
+      line-height:1.7;
+    }
+
+    /* CONTACT */
+    .contact{
+      background:var(--red);
+      display:flex;
+      justify-content:center;
+    }
+
+    .contact-container{
+      width:100%;
+      max-width:750px;
+      text-align:center;
+    }
+
+    .contact .section-title{
+      color:white;
+    }
+
+    .contact .section-title::after{
+      background:white;
+    }
+
+    .contact-subtitle{
+      color:#f5f5f5;
+      margin-bottom:35px;
+      font-size:17px;
+    }
+
+    .contact-form{
+      background:white;
+      padding:40px;
+      border-radius:25px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.15);
+    }
+
+    .input-row{
+      display:flex;
+      gap:15px;
+      margin-bottom:15px;
+    }
+
+    input,
+    textarea{
+      width:100%;
+      padding:16px;
+      border:1px solid #ddd;
+      border-radius:14px;
+      outline:none;
+      font-size:15px;
+      transition:0.3s;
+    }
+
+    input:focus,
+    textarea:focus{
+      border-color:var(--red);
+      box-shadow:0 0 8px rgba(225,6,0,0.2);
+    }
+
+    textarea{
+      resize:none;
+    }
+
+    .contact-btn{
+      width:100%;
+      margin-top:15px;
+    }
+
+    /* FOOTER */
+    footer{
+      text-align:center;
+      padding:25px;
+      background:#ffffffde;
+      color:rgb(14, 13, 13);
+      font-size:15px;
+    }
+
+    /* MODAL */
+    .modal{
+      display:none;
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,0.6);
+      backdrop-filter:blur(5px);
+      justify-content:center;
+      align-items:center;
+      z-index:2000;
+      padding:20px;
+    }
+
+    .modal-content{
+      background:white;
+      width:100%;
+      max-width:550px;
+      padding:35px;
+      border-radius:25px;
+      animation:popup 0.3s ease;
+    }
+
+    @keyframes popup{
+      from{
+        transform:scale(0.8);
+        opacity:0;
+      }
+      to{
+        transform:scale(1);
+        opacity:1;
+      }
+    }
+
+    .modal-header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:10px;
+    }
+
+    .modal-header h2{
+      color:var(--red);
+    }
+
+    .close-x{
+      background:none;
+      border:none;
+      font-size:30px;
+      cursor:pointer;
+    }
+
+    .subtitle{
+      color:#666;
+      margin-bottom:20px;
+    }
+
+    .profile-box{
+      display:grid;
+      gap:14px;
+    }
+
+    .profile-item{
+      display:flex;
+      justify-content:space-between;
+      padding:14px;
+      background:#f9f9f9;
+      border-left:4px solid var(--red);
+      border-radius:12px;
+      gap:10px;
+    }
+
+    .label{
+      font-weight:600;
+    }
+
+    .skills-tags{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:25px;
+    }
+
+    .skills-tags span{
+      background:var(--red);
+      color:white;
+      padding:8px 16px;
+      border-radius:30px;
+      font-size:13px;
+    }
+
+    .modal-actions{
+      margin-top:25px;
+      text-align:right;
+    }
+
+    /* RESPONSIVE */
+    @media(max-width:900px){
+
+      header{
+        flex-direction:column;
+        gap:15px;
+        padding:20px;
+      }
+
+      .hero{
+        flex-direction:column;
+        text-align:center;
+        padding:180px 20px 80px;
+        background:linear-gradient(
+        180deg,
+        #ffffff 55%,
+        #d90404 45%
+        );
+      }
+
+      .hero-text h1{
+        font-size:45px;
+      }
+
+      .hero-buttons{
+        justify-content:center;
+      }
+
+      .input-row{
+        flex-direction:column;
+      }
+
+      nav{
+        flex-wrap:wrap;
+        justify-content:center;
+      }
+
+      .profile-item{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header>
+
+    <div class="logo">
+      Christian<span>.</span>
+    </div>
+
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#portfolio">Portfolio</a>
+    </nav>
+
+    <a href="#contact" class="btn">
+      Contact Me
+    </a>
+
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+
+    <div class="hero-text">
+
+      <h4>Hello, I'm</h4>
+
+      <h1>
+        <span>Christian</span> Rementizo
+      </h1>
+
+      <p class="role">
+        Front-End Developer • UI Designer • IT Student
+      </p>
+
+      <div class="hero-buttons">
+
+        <button class="btn" onclick="openHire()">
+          Hire Me
+        </button>
+
+        <a href="#portfolio" class="btn btn-outline">
+          View Projects
+        </a>
+
+      </div>
+
+    </div>
+
+    <div class="hero-img">
+      <img src="pic-removebg-preview.png" alt="Christian Rementizo">
+    </div>
+
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="about">
+
+    <div class="about-container">
+
+      <h2 class="section-title">
+        About Me
+      </h2>
+
+      <p class="about-text">
+        Hello! I'm <strong>Christian Rementizo</strong>, an aspiring
+        <strong>IT professional</strong> and creative
+        <strong>Front-End Developer</strong> passionate about designing
+        modern, responsive, and visually engaging websites.
+      </p>
+
+      <p class="about-text">
+        I enjoy transforming ideas into interactive digital experiences using
+        <strong>HTML, CSS, and JavaScript</strong>. My goal is to create
+        websites that are beautiful, responsive, user-friendly, and modern.
+      </p>
+
+      <p class="about-text">
+        I continuously improve my skills in web development, UI/UX design,
+        and modern technologies to build innovative and professional projects.
+      </p>
+
+      <!-- HIGHLIGHTS -->
+      <div class="about-highlights">
+
+        <div class="highlight-card">
+          <h3>🎯 Goal</h3>
+          <p>
+            To become a professional Front-End Developer and UI/UX Designer.
+          </p>
+        </div>
+
+        <div class="highlight-card">
+          <h3>💻 Focus</h3>
+          <p>
+            Responsive Web Design, Interactive UI, and Modern Web Experiences.
+          </p>
+        </div>
+
+        <div class="highlight-card">
+          <h3>🔥 Passion</h3>
+          <p>
+            Creating clean, creative, and visually stunning websites.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- SOCIAL -->
+      <div class="social-links">
+
+        <a href="https://www.facebook.com/Inggo2005/"
+          target="_blank"
+          class="social-btn">
+
+          <i class="fab fa-facebook-f"></i>
+          Facebook
+
+        </a>
+
+        <a href="https://www.instagram.com/rementizo123/"
+          target="_blank"
+          class="social-btn">
+
+          <i class="fab fa-instagram"></i>
+          Instagram
+
+        </a>
+
+        <a href="mailto:rementizo2005@gmail.com"
+          class="social-btn">
+
+          <i class="fas fa-envelope"></i>
+          Gmail
+
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="skills-section">
+
+    <h2 class="section-title">
+      Skills
+    </h2>
+
+    <div class="skills-grid">
+
+      <div class="skill-card">
+
+        <i class="fab fa-html5"></i>
+
+        <h3>HTML / CSS</h3>
+
+        <p>
+          Building responsive and professional website layouts.
+        </p>
+
+      </div>
+
+      <div class="skill-card">
+
+        <i class="fab fa-js"></i>
+
+        <h3>JavaScript</h3>
+
+        <p>
+          Creating interactive and dynamic website functionality.
+        </p>
+
+      </div>
+
+      <div class="skill-card">
+
+        <i class="fas fa-pen-ruler"></i>
+
+        <h3>UI / UX Design</h3>
+
+        <p>
+          Designing modern and user-friendly interfaces.
+        </p>
+
+      </div>
+
+      <div class="skill-card">
+
+        <i class="fas fa-mobile-screen"></i>
+
+        <h3>Responsive Design</h3>
+
+        <p>
+          Mobile-first layouts that work across all devices.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- PORTFOLIO -->
+  <section id="portfolio" class="portfolio-section">
+
+    <h2 class="section-title">
+      Portfolio
+    </h2>
+
+    <div class="portfolio-grid">
+
+      <div class="portfolio-card">
+
+        <img src="download (1).jpg" alt="Wedding Website">
+
+        <div class="portfolio-content">
+
+          <h3>Wedding Portfolio Website</h3>
+
+          <p>
+            Elegant wedding landing page with modern design and responsive layout.
+          </p>
+
+        </div>
+
+      </div>
+
+      <div class="portfolio-card">
+
+        <img src="1.jpg" alt="Customer Service Website">
+
+        <div class="portfolio-content">
+
+          <h3>Customer Service Website</h3>
+
+          <p>
+            Responsive business website designed for customer support services.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+
+    <div class="contact-container">
+
+      <h2 class="section-title">
+        Contact Me
+      </h2>
+
+      <p class="contact-subtitle">
+        Let’s work together — send me a message.
+      </p>
+
+      <form class="contact-form"
+        action="https://formspree.io/f/mpqnzenj"
+        method="POST">
+
+        <div class="input-row">
+
+          <input
+            type="text"
+            name="name"
+            placeholder="Your Name"
+            required>
+
+          <input
+            type="email"
+            name="email"
+            placeholder="Your Email"
+            required>
+
+        </div>
+
+        <textarea
+          name="message"
+          rows="6"
+          placeholder="Your Message"
+          required></textarea>
+
+        <button class="btn contact-btn" type="submit">
+          Send Message
+        </button>
+
+      </form>
+
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    © 2026 Christian Rementizo | All Rights Reserved
+  </footer>
+
+  <!-- MODAL -->
+  <div id="hireModal" class="modal">
+
+    <div class="modal-content">
+
+      <div class="modal-header">
+
+        <h2>Hire Me</h2>
+
+        <button class="close-x" onclick="closeHire()">
+          &times;
+        </button>
+
+      </div>
+
+      <p class="subtitle">
+        Available for freelance projects and internship opportunities.
+      </p>
+
+      <div class="profile-box">
+
+        <div class="profile-item">
+          <span class="label">Name</span>
+          <span>Christian Rementizo</span>
+        </div>
+
+        <div class="profile-item">
+          <span class="label">Role</span>
+          <span>Front-End Developer</span>
+        </div>
+
+        <div class="profile-item">
+          <span class="label">Experience</span>
+          <span>Student Projects & Freelance Practice</span>
+        </div>
+
+      </div>
+
+      <div class="skills-tags">
+
+        <span>HTML</span>
+        <span>CSS</span>
+        <span>JavaScript</span>
+        <span>Responsive Design</span>
+        <span>UI/UX</span>
+
+      </div>
+
+      <div class="modal-actions">
+
+        <button class="btn" onclick="closeHire()">
+          Close
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- SCRIPT -->
+  <script>
+
+    function openHire(){
+      document.getElementById("hireModal").style.display = "flex";
+    }
+
+    function closeHire(){
+      document.getElementById("hireModal").style.display = "none";
+    }
+
+    // CLOSE MODAL WHEN CLICK OUTSIDE
+    window.onclick = function(event){
+
+      const modal = document.getElementById("hireModal");
+
+      if(event.target === modal){
+        modal.style.display = "none";
+      }
+
+    };
+
+  </script>
+
+</body>
+</html>
